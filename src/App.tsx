@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { rem } from 'polished';
 import { Creation } from './pages/Creation';
 import { Detail } from './pages/Detail';
 import { Landing } from './pages/Landing';
@@ -13,28 +12,22 @@ const Container = styled.div`
   font-weight: 500;
 `;
 
-const PageContainer = styled.div`
-  margin: ${rem(10)};
-`;
-
 export const App = () => {
   return (
     <Router>
       <Container>
         <Navbar />
-        <PageContainer>
-          <Switch>
-            <Route exact path="/">
-              <Landing />
-            </Route>
-            <Route exact path="/create">
-              <Creation />
-            </Route>
-            <Route exact path="/lock/:handcuffId">
-              <Detail />
-            </Route>
-          </Switch>
-        </PageContainer>
+        <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <Route exact path="/create">
+            <Creation />
+          </Route>
+          <Route exact path="/lock/:handcuffId">
+            <Detail />
+          </Route>
+        </Switch>
 
         <ul>
           <li>
