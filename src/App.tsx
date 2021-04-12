@@ -1,15 +1,18 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Creation } from './pages/Creation';
 import { Detail } from './pages/Detail';
 import { Landing } from './pages/Landing';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Vaults } from './pages/Vaults';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
+import { DevTools } from './components/DevTools';
 
 const Container = styled.div`
+  position: relative;
   background-color: white;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
+  min-height: 100vh;
 `;
 
 export const App = () => {
@@ -27,19 +30,11 @@ export const App = () => {
           <Route exact path="/lock/:handcuffId">
             <Detail />
           </Route>
+          <Route exact path="/vaults">
+            <Vaults />
+          </Route>
         </Switch>
-
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/create">Creation</Link>
-          </li>
-          <li>
-            <Link to="/lock/5">Sample Detail Page</Link>
-          </li>
-        </ul>
+        <DevTools />
       </Container>
     </Router>
   );
