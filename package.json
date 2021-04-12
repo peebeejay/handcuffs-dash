@@ -49,6 +49,9 @@
       "last 1 safari version"
     ]
   },
+  "resolutions": {
+    "@storybook/react/babel-loader": "8.1.0"
+  },
   "devDependencies": {
     "@storybook/addon-actions": "^6.2.7",
     "@storybook/addon-essentials": "^6.2.7",
