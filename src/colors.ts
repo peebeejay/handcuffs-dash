@@ -12,3 +12,5 @@ export const PrimaryBlueDark = '#174BE6';
 export const InputBlue = '#339DFF';
 export const InputOrange = '#FEA655';
 export const InputPurple = '#916BFD';
+
+export const ShieldGreen = '#5ED068';
