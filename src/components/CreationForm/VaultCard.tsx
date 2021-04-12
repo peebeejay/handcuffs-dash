@@ -7,12 +7,12 @@ const VaultCardContainer = styled.section`
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid ${Gray2};
-  box-shadow: 0px 4px 16px rgba(187, 196, 239, 0.35);
+  box-shadow: 0px ${rem(4)} ${rem(16)} rgba(187, 196, 239, 0.35);
   background-color: white;
   border-radius: ${rem(15)};
   padding: ${rem(16)};
   height: ${rem(150)};
-  max-width: ${rem(350)};
+  width: ${rem(350)};
 `;
 
 const TopContent = styled.section`
