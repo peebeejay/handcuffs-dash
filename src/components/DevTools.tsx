@@ -54,7 +54,10 @@ export const DevTools = () => {
           <Link to="/create">Creation</Link>
         </li>
         <li>
-          <Link to="/lock/5">Sample Detail Page</Link>
+          <Link to="/lock/5">Detail</Link>
+        </li>
+        <li>
+          <Link to="/vaults">Vaults</Link>
         </li>
       </ul>
     </NavHelper>
