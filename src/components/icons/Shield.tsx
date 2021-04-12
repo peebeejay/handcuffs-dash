@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref, SVGAttributes } from 'react';
+import { forwardRef, Ref, SVGAttributes } from 'react';
 
 export const ShieldIcon = forwardRef(
   (props: SVGAttributes<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (

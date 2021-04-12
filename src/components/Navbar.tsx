@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { rem } from 'polished';
 import { Gray1, Gray2, Gray3, Gray4, TextDark } from '../colors';
