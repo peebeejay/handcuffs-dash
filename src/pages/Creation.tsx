@@ -1,14 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { rem } from 'polished';
-import { ProgressBar } from '../components/ProgressBar';
-import { CreationForm } from '../components/CreationForm';
+import { CreationForm } from '../components/CreationForm/CreationForm';
+import CreationFormProvider from '../components/CreationForm/CreationFormProvider';
 
 export const Creation = () => {
   return (
-    <div>
-      <ProgressBar percentFilled={40} />
+    <CreationFormProvider>
       <CreationForm />
-    </div>
+    </CreationFormProvider>
   );
 };
