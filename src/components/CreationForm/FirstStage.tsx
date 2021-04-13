@@ -51,7 +51,7 @@ export const FirstStage = () => {
       <Inputs>
         {Object.keys(formData.inputs).map((key: string, idx: number) => {
           return (
-            <InputWrapper>
+            <InputWrapper key={`hc-cf-1-input-wrapper-${key}`}>
               <InputBadge variant={variantsList[idx % variantsList.length]} />
               <Input
                 id={`input-${key}`}
