@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { rem } from 'polished';
 import { Gray1, Gray2, Gray3, Gray4, TextDark } from '../colors';
 import { MoonIcon } from './icons/Moon';
+import { HandcuffsLogo } from './icons/HandcuffsLogo';
+import { Link } from '../components/shared/Link';
 
 const Container = styled.div`
   display: flex;
@@ -13,12 +15,16 @@ const Container = styled.div`
 `;
 
 const ContentLeft = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-left: ${rem(32)};
 `;
 
 const Name = styled.div`
   color: ${TextDark};
   font-size: ${rem(16)};
+  margin-left: ${rem(5)};
 `;
 
 const ContentRight = styled.div`
@@ -76,11 +82,14 @@ const StyledMoonIcon = styled(MoonIcon)`
 export const Navbar = () => {
   return (
     <Container>
-      <ContentLeft>
-        <Name>Handcuffs</Name>
-      </ContentLeft>
+      <Link to="/">
+        <ContentLeft>
+          <HandcuffsLogo />
+          <Name>{'Handcuffs'}</Name>
+        </ContentLeft>
+      </Link>
       <ContentRight>
-        <ConnectWalletButton>Connect Wallet</ConnectWalletButton>
+        <ConnectWalletButton>{'Connect Wallet'}</ConnectWalletButton>
         <ThemeToggleButton>
           <StyledMoonIcon />
         </ThemeToggleButton>
