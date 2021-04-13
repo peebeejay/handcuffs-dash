@@ -28,6 +28,7 @@ const Progress = styled.div<{
   width: ${({ percentFilled }) => percentFilled}%;
   height: ${rem(BAR_HEIGHT)};
   background: linear-gradient(180deg, #3366ff 0%, #7b61ff 100%);
+  transition: 250ms width ease;
 `;
 
 export const ProgressBar = (props: Props) => {
