@@ -27,7 +27,7 @@ export const CreationForm = () => {
 
   return (
     <>
-      <ProgressBar percentFilled={40} />
+      <ProgressBar percentFilled={((formData.stage + 1) / 3) * 100} />
       <Container>
         <Form>
           {formData.stage === Stages.First && <FirstStage />}
