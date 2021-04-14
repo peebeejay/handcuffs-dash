@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from 'react';
-import { injected } from '../connectors';
+import { injectedConnector } from '../connectors';
 import { useWeb3React } from '@web3-react/core';
 
 /**
@@ -11,7 +11,7 @@ export function useInactiveListener(suppress = false) {
 
   const handleChainChanged = useCallback(() => {
     /* Attempt activation & catch errors if they appear */
-    activate(injected, undefined, true).catch((error) => {
+    activate(injectedConnector, undefined, true).catch((error) => {
       console.error('Failed to activate after chain changed', error);
     });
   }, [activate]);
@@ -20,7 +20,7 @@ export function useInactiveListener(suppress = false) {
     (accounts: string[]) => {
       if (accounts.length > 0) {
         /* Attempt activation & catch errors if they appear */
-        activate(injected, undefined, true).catch((error) => {
+        activate(injectedConnector, undefined, true).catch((error) => {
           console.error('Failed to activate after accounts changed', error);
         });
       }

@@ -1,10 +1,10 @@
-import React, { SVGAttributes, useEffect } from 'react';
+import React, { SVGAttributes } from 'react';
 import styled from 'styled-components';
 import { rem } from 'polished';
 import MUDialog from '@material-ui/core/Dialog';
 import { useWeb3React } from '@web3-react/core';
 import { AbstractConnector } from '@web3-react/abstract-connector';
-import { injected } from '../../connectors';
+import { injectedConnector } from '../../connectors';
 import { Gray2, Gray1, TextDark, TextLight } from '../../colors';
 import { MetamaskLogo } from '../icons/MetaMaskLogo';
 import { ExternalLink } from '../shared/Link';
@@ -29,7 +29,7 @@ const options: WalletInfo[] = [
     name: 'Metamask',
     subtext: 'Add funds with your Metamask Wallet',
     logo: MetamaskLogo,
-    connector: injected,
+    connector: injectedConnector,
     description: 'Easy-to-use browser extension.',
   },
 ];

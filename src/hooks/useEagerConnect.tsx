@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { injected } from '../connectors';
+import { injectedConnector } from '../connectors';
 import { useWeb3React } from '@web3-react/core';
 
 /**
@@ -12,9 +12,9 @@ export function useEagerConnect() {
 
   /* Only run this hook once ideally */
   useEffect(() => {
-    injected.isAuthorized().then((isAuthorized) => {
+    injectedConnector.isAuthorized().then((isAuthorized) => {
       if (isAuthorized) {
-        activate(injected, undefined, true).catch(() => {
+        activate(injectedConnector, undefined, true).catch(() => {
           setHasTried(true);
         });
       } else {
