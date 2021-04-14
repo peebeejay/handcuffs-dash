@@ -23,6 +23,7 @@ const StyledButton = styled.div`
   transition: 250ms background-color ease;
   cursor: pointer;
   color: white;
+  max-width: ${rem(400)};
 
   &:hover {
     background-color: ${PrimaryBlueDark};
