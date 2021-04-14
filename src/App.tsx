@@ -1,3 +1,6 @@
+import { Web3ReactProvider } from '@web3-react/core';
+import { providers } from 'ethers';
+import { StylesProvider } from '@material-ui/core/styles';
 import styled from 'styled-components';
 import { Creation } from './pages/Creation';
 import { Detail } from './pages/Detail';
@@ -6,6 +9,7 @@ import { Vaults } from './pages/Vaults';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { DevTools } from './components/DevTools';
+import { Web3ConnectionManager } from './components/Web3ConnectionManager';
 
 const Container = styled.div`
   position: relative;
@@ -15,28 +19,40 @@ const Container = styled.div`
   min-height: 100vh;
 `;
 
+const getLibrary = (provider: any): providers.Web3Provider => {
+  const library = new providers.Web3Provider(provider);
+
+  return library;
+};
+
 export const App = () => {
   return (
-    <Router>
-      <Container>
-        <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <Landing />
-          </Route>
-          <Route exact path="/create">
-            <Creation />
-          </Route>
-          <Route exact path="/lock/:handcuffId">
-            <Detail />
-          </Route>
-          <Route exact path="/vaults">
-            <Vaults />
-          </Route>
-        </Switch>
-        <DevTools />
-      </Container>
-    </Router>
+    <StylesProvider injectFirst>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <Router>
+          <Web3ConnectionManager>
+            <Container>
+              <Navbar />
+              <Switch>
+                <Route exact path="/">
+                  <Landing />
+                </Route>
+                <Route exact path="/create">
+                  <Creation />
+                </Route>
+                <Route exact path="/lock/:handcuffId">
+                  <Detail />
+                </Route>
+                <Route exact path="/vaults">
+                  <Vaults />
+                </Route>
+              </Switch>
+              <DevTools />
+            </Container>
+          </Web3ConnectionManager>
+        </Router>
+      </Web3ReactProvider>
+    </StylesProvider>
   );
 };
 
