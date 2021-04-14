@@ -37,6 +37,32 @@ const NavHelper = styled.div.attrs(({ x, y }: Position) => ({
   }
 `;
 
+type Page = {
+  name: string;
+  href: string;
+};
+
+const pages: Page[] = [
+  {
+    name: 'Home',
+    href: '/',
+  },
+  {
+    name: 'Creation',
+    href: '/create',
+  },
+
+  {
+    name: 'Detail',
+    href: '/lock/5',
+  },
+
+  {
+    name: 'Vaults',
+    href: '/vaults',
+  },
+];
+
 export const DevTools = () => {
   /* Store dev tools position in local storage */
   const [lsx, setLsx] = useLocalStorage<number>('hc-devtools-pos-x', 50);
@@ -60,18 +86,11 @@ export const DevTools = () => {
     <NavHelper {...bind()} x={tx} y={ty}>
       {'⚡️~Dev Toolz~🤓'}
       <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/create">Creation</Link>
-        </li>
-        <li>
-          <Link to="/lock/5">Detail</Link>
-        </li>
-        <li>
-          <Link to="/vaults">Vaults</Link>
-        </li>
+        {pages.map((page, i) => (
+          <li key={`dev-toolz-${i}`}>
+            <Link to={page.href}>{page.name}</Link>
+          </li>
+        ))}
       </ul>
     </NavHelper>
   );
