@@ -23,8 +23,6 @@ export const CreationForm = () => {
   const formData = useContext(CreationFormState);
   const dispatch = useContext(CreationFormDispatch);
 
-  console.log(formData);
-
   return (
     <>
       <ProgressBar percentFilled={((formData.stage + 1) / 3) * 100} />

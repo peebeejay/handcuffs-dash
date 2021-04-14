@@ -37,8 +37,6 @@ export const Wallet = () => {
     ...rest
   } = useWeb3React();
 
-  console.log(active, account, error, rest);
-
   useEffect(() => {
     if (account) {
       setIsOpen(false);
