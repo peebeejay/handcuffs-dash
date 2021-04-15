@@ -27,37 +27,24 @@ const ConnectWalletButton = styled.div`
 
 export const Wallet = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const {
-    active,
-    account,
-    connector,
-    activate,
-    error,
-    deactivate,
-    ...rest
-  } = useWeb3React();
+  const web3 = useWeb3React();
 
   useEffect(() => {
-    if (account) {
+    if (web3.account) {
       setIsOpen(false);
     }
-  }, [account, active, isOpen]);
+  }, [web3.account, web3.active, isOpen]);
 
   return (
     <>
       <ConnectionModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
-      {!active && !account && (
+      {!web3.active && !web3.account && (
         <ConnectWalletButton onClick={() => setIsOpen(!isOpen)}>
           {'Connect Wallet'}
         </ConnectWalletButton>
       )}
-      {active && account && (
-        <WalletStatus
-          onClick={() => {
-            deactivate();
-          }}
-          account={account}
-        />
+      {web3.active && web3.account && (
+        <WalletStatus onClick={() => {}} account={web3.account} />
       )}
     </>
   );
