@@ -42,6 +42,7 @@ const Dialog = styled(({ className, ...props }) => (
   <MUDialog {...props} classes={{ paper: className }} />
 ))`
   border-radius: ${rem(12)};
+  font-family: 'Poppins', sans-serif;
 `;
 
 const Body = styled.section`
