@@ -1,5 +1,5 @@
 import { Web3ReactProvider } from '@web3-react/core';
-import { providers } from 'ethers';
+import { Web3Provider } from '@ethersproject/providers';
 import { StylesProvider } from '@material-ui/core/styles';
 import styled from 'styled-components';
 import { Creation } from './pages/Creation';
@@ -19,8 +19,8 @@ const Container = styled.div`
   min-height: 100vh;
 `;
 
-const getLibrary = (provider: any): providers.Web3Provider => {
-  const library = new providers.Web3Provider(provider);
+const getLibrary = (provider: any): Web3Provider => {
+  const library = new Web3Provider(provider);
 
   return library;
 };

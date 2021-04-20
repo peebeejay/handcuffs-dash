@@ -4,10 +4,12 @@ import { rem } from 'polished';
 import MUDialog from '@material-ui/core/Dialog';
 import { useWeb3React } from '@web3-react/core';
 import { AbstractConnector } from '@web3-react/abstract-connector';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { injectedConnector } from '../../connectors';
 import { Gray2, Gray1, TextDark, TextLight } from '../../colors';
 import { MetamaskLogo } from '../icons/MetaMaskLogo';
 import { ExternalLink } from '../shared/Link';
+import { ConnectionType } from '../../hooks/useEagerConnect';
 
 type Props = {
   isOpen: boolean;
@@ -22,6 +24,7 @@ type WalletInfo = {
     SVGAttributes<SVGSVGElement> & React.RefAttributes<SVGSVGElement>
   >;
   connector: AbstractConnector;
+  type: ConnectionType;
 };
 
 const options: WalletInfo[] = [
@@ -31,6 +34,7 @@ const options: WalletInfo[] = [
     logo: MetamaskLogo,
     connector: injectedConnector,
     description: 'Easy-to-use browser extension.',
+    type: ConnectionType.Injected,
   },
 ];
 
@@ -102,14 +106,24 @@ const NewToEthereum = styled.div`
 
 export const ConnectionModal = (props: Props) => {
   const { isOpen, onClose } = props;
+  const { connector, activate } = useWeb3React();
+  const [_, setCachedConnection] = useLocalStorage<ConnectionType | null>(
+    'cachedConnection',
+    null,
+  );
 
-  const { active, account, connector, activate, error } = useWeb3React();
-
-  const activateConnection = async (connector?: AbstractConnector) => {
-    connector &&
-      activate(connector, undefined, true).catch((err) => {
-        console.error(err);
-      });
+  const activateConnection = async (
+    type: ConnectionType,
+    connector?: AbstractConnector,
+  ) => {
+    if (connector) {
+      try {
+        await activate(connector, undefined, true);
+        setCachedConnection(type);
+      } catch (err) {
+        console.warn(err);
+      }
+    }
   };
 
   return (
@@ -125,9 +139,10 @@ export const ConnectionModal = (props: Props) => {
             return (
               <OptionTile
                 key={`connect-modal-option-${i}`}
-                onClick={() =>
-                  option.connector !== connector && activateConnection(option.connector)
-                }
+                onClick={() => {
+                  option.connector !== connector &&
+                    activateConnection(option.type, option.connector);
+                }}
               >
                 <Logo />
                 <Header>{option.name}</Header>

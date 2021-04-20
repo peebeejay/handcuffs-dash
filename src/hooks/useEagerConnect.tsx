@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import { injectedConnector } from '../connectors';
 import { useWeb3React } from '@web3-react/core';
+import { useLocalStorage } from './useLocalStorage';
+
+export enum ConnectionType {
+  Injected = 'Injected',
+}
 
 /**
  * This hook attempts to connect to an injected provider upon page load to prevent
@@ -9,11 +14,15 @@ import { useWeb3React } from '@web3-react/core';
 export function useEagerConnect() {
   const { activate, active } = useWeb3React();
   const [hasTried, setHasTried] = useState(false);
+  const [cachedConnection] = useLocalStorage<ConnectionType | null>(
+    'cachedConnection',
+    null,
+  );
 
   /* Only run this hook once ideally */
   useEffect(() => {
     injectedConnector.isAuthorized().then((isAuthorized) => {
-      if (isAuthorized) {
+      if (!hasTried && isAuthorized && cachedConnection === ConnectionType.Injected) {
         activate(injectedConnector, undefined, true).catch(() => {
           setHasTried(true);
         });
@@ -21,7 +30,7 @@ export function useEagerConnect() {
         setHasTried(true);
       }
     });
-  }, [activate]);
+  }, [activate, cachedConnection, hasTried]);
 
   /**
    * If the connection worked, wait until a confirmation is received to

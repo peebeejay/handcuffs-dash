@@ -5,6 +5,9 @@ import { useWeb3React } from '@web3-react/core';
 import { TextDark, Gray3, Gray1 } from '../../colors';
 import { ConnectionModal } from './ConnectionModal';
 import { WalletStatus } from './WalletStatus';
+import { Web3Provider } from '@ethersproject/providers';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { ConnectionType } from '../../hooks/useEagerConnect';
 
 const ConnectWalletButton = styled.div`
   display: flex;
@@ -27,24 +30,34 @@ const ConnectWalletButton = styled.div`
 
 export const Wallet = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const web3 = useWeb3React();
+  const { account, active, deactivate } = useWeb3React<Web3Provider>();
+  const [_, setCachedConnection] = useLocalStorage<ConnectionType | null>(
+    'cachedConnection',
+    null,
+  );
 
   useEffect(() => {
-    if (web3.account) {
+    if (account) {
       setIsOpen(false);
     }
-  }, [web3.account, web3.active, isOpen]);
+  }, [account, active, isOpen]);
 
   return (
     <>
       <ConnectionModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
-      {!web3.active && !web3.account && (
+      {!active && !account && (
         <ConnectWalletButton onClick={() => setIsOpen(!isOpen)}>
           {'Connect Wallet'}
         </ConnectWalletButton>
       )}
-      {web3.active && web3.account && (
-        <WalletStatus onClick={() => {}} account={web3.account} />
+      {active && account && (
+        <WalletStatus
+          onClick={() => {
+            deactivate();
+            setCachedConnection(null);
+          }}
+          account={account}
+        />
       )}
     </>
   );
