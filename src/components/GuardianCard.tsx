@@ -52,6 +52,7 @@ const Address = styled.div`
     font-size: ${rem(16)};
     color: ${TextLight};
     font-weight: 500;
+    margin-bottom: ${rem(12)};
 `;
 
 const Status = styled.div`
