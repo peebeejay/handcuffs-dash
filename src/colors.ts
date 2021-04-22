@@ -14,3 +14,4 @@ export const InputOrange = '#FEA655';
 export const InputPurple = '#916BFD';
 
 export const ShieldGreen = '#5ED068';
+export const ShieldPurple = '#9A77FF';
