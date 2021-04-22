@@ -35,6 +35,9 @@ https://www.figma.com/file/FZX4Lg2lk9LRjFFQEY7jIR/Handcuffs?node-id=40%3A2
 - create placeholder for table component
 - un-hardcode the devtools list & place in obj instead
 - Add the favicon
+- make it so that stage 1 navigation button (back) is disabled
+- fix beneficiary radio buttons
+- fix styling on the form navigation buttons
 
 - create connected wallet mechanism
   - create Web3ReactProvider instantiation -> pass in a ethers.js provider
@@ -50,3 +53,4 @@ https://www.figma.com/file/FZX4Lg2lk9LRjFFQEY7jIR/Handcuffs?node-id=40%3A2
   - when clicking connect, render the wallet connect modal
   - implement connect
   - implement disconnect
+  - add capability to disconnect fully from metamask; isEagerConnectDisabled
