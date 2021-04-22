@@ -11,19 +11,34 @@ import { SubHeader } from '../typography/SubHeader';
 import { StepHeader as SharedStepHeader } from '../typography/StepHeader';
 import { Navigation } from './Navigation';
 import { Divider } from '../shared/Divider';
+import { Beneficiary } from './CreationFormProvider';
+import { PrimaryBlueDark } from '../../colors';
 
 const StepHeader = styled(SharedStepHeader)`
   margin-bottom: ${rem(16)};
 `;
 
+const StyledSubHeader = styled(SubHeader)`
+  margin-top: ${rem(25)};
+  margin-bottom: ${rem(5)};
+`;
+
 const Input = styled(MUTextField)`
-  width: 300px;
-  && {
-    margin-left: ${rem(12)};
-    input {
-      height: ${rem(15)};
-      font-family: 'Poppins', sans-serif;
-    }
+  width: 100%;
+
+  input {
+    height: ${rem(15)};
+    font-family: 'Poppins', sans-serif;
+  }
+`;
+
+const StyledDivider = styled(Divider)`
+  margin-top: ${rem(35)};
+`;
+
+const RadioButton = styled(FormControlLabel)`
+  & .MuiRadio-colorSecondary.Mui-checked {
+    color: ${PrimaryBlueDark};
   }
 `;
 
@@ -35,7 +50,7 @@ export const SecondStage = () => {
     <>
       <StepNumber>{'Step 02'}</StepNumber>
       <StepHeader>{'Add details & funds.'}</StepHeader>
-      <SubHeader>{`Locked until`}</SubHeader>
+      <StyledSubHeader>{`Locked until`}</StyledSubHeader>
       <Input
         value={'Today'}
         variant="outlined"
@@ -45,17 +60,23 @@ export const SecondStage = () => {
         }}
       />
 
-      <SubHeader>{`Beneficary`}</SubHeader>
+      <StyledSubHeader>{`Beneficary`}</StyledSubHeader>
       <RadioGroup
-        aria-label="gender"
-        name="gender1"
-        value={'female'}
-        onChange={() => console.log('test')}
+        aria-label="beneficiary"
+        name="beneficiary"
+        value={formData.beneficiary}
+        onChange={(e: React.ChangeEvent) => {
+          updateState((state) => ({
+            ...state,
+            beneficiary: (e.target as HTMLInputElement).value as Beneficiary,
+          }));
+        }}
       >
-        <FormControlLabel value="female" control={<Radio />} label="Myself" />
-        <FormControlLabel value="male" control={<Radio />} label="Other Address" />
+        {Object.values(Beneficiary).map((beneficiary) => (
+          <RadioButton value={beneficiary} control={<Radio />} label={beneficiary} />
+        ))}
       </RadioGroup>
-      <SubHeader>{`Protected Amount`}</SubHeader>
+      <StyledSubHeader>{`Protected Amount`}</StyledSubHeader>
       <Input
         value={'Today'}
         variant="outlined"
@@ -64,7 +85,7 @@ export const SecondStage = () => {
           e.preventDefault();
         }}
       />
-      <Divider />
+      <StyledDivider />
       <Navigation
         onClickBack={() => updateState({ ...formData, stage: Stages.First })}
         onClickContinue={() => updateState({ ...formData, stage: Stages.Third })}
