@@ -15,11 +15,17 @@ type InputData = {
   value: string;
 };
 
+export enum Beneficiary {
+  Myself = 'Myself',
+  Other = 'Other Address',
+}
+
 export type State = {
   stage: number;
   inputs: {
     [key: string]: InputData;
   };
+  beneficiary: Beneficiary;
 };
 
 export enum Stages {
@@ -39,6 +45,7 @@ export const createInitialState = (): State => ({
     '1': { value: '' },
     '2': { value: '' },
   },
+  beneficiary: Beneficiary.Myself,
 });
 
 export const CreationFormDispatch = createContext<Dispatcher>({} as Dispatcher);
