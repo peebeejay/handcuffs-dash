@@ -6,6 +6,7 @@ import { Button } from '../shared/Button';
 type Props = {
   onClickBack: React.MouseEventHandler;
   onClickContinue: React.MouseEventHandler;
+  isBackDisabled?: boolean;
 };
 
 const NavigationContainer = styled.div`
@@ -25,12 +26,14 @@ const ContinueButton = styled(Button)`
 `;
 
 export const Navigation = (props: Props) => {
-  const { onClickBack, onClickContinue } = props;
+  const { onClickBack, onClickContinue, isBackDisabled } = props;
 
   return (
     <>
       <NavigationContainer>
-        <BackButton onClick={onClickBack}>{'Back'}</BackButton>
+        <BackButton disabled={isBackDisabled} onClick={onClickBack}>
+          {'Back'}
+        </BackButton>
         <ContinueButton onClick={onClickContinue}>{'Continue'}</ContinueButton>
       </NavigationContainer>
     </>
