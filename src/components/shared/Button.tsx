@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { rem } from 'polished';
-import { PrimaryBlue, PrimaryBlueDark } from '../../colors';
+import { PrimaryBlue, PrimaryBlueDark, Gray4 } from '../../colors';
 
 type Props = {
   children: React.ReactNode;
   className?: string;
   onClick?: React.MouseEventHandler;
+  disabled?: boolean;
 };
 
 const StyledButton = styled.div`
@@ -30,7 +31,24 @@ const StyledButton = styled.div`
   }
 `;
 
-export const Button = ({ children, className, onClick }: Props) => {
+const DisabledButton = styled(StyledButton)`
+  background-color: white;
+  color: ${Gray4};
+  cursor: default;
+
+  &:hover {
+    background-color: white;
+  }
+`;
+
+export const Button = ({ children, className, onClick, disabled }: Props) => {
+  if (disabled) {
+    return (
+      <DisabledButton className={className} onClick={onClick}>
+        {children}
+      </DisabledButton>
+    );
+  }
   return (
     <StyledButton className={className} onClick={onClick}>
       {children}
