@@ -47,7 +47,7 @@ export const FirstStage = () => {
     <>
       <StepNumber>{'Step 01 '}</StepNumber>
       <StepHeader>{'Assign guardians to your vault.'}</StepHeader>
-      <StepSubHeader>{`Set the addresses have the honor of protecting this vault. `}</StepSubHeader>
+      <StepSubHeader>{`Set the addresses that have the honor of protecting this vault. `}</StepSubHeader>
       <Inputs>
         {Object.keys(formData.inputs).map((key: string, idx: number) => {
           return (
@@ -81,6 +81,7 @@ export const FirstStage = () => {
       <Navigation
         onClickBack={() => {}}
         onClickContinue={() => updateState({ ...formData, stage: Stages.Second })}
+        isBackDisabled={true}
       />
     </>
   );
