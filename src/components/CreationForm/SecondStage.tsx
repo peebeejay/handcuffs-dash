@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { rem } from 'polished';
-import MUTextField from '@material-ui/core/TextField';
+import { DateTime } from 'luxon';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -12,7 +12,9 @@ import { StepHeader as SharedStepHeader } from '../typography/StepHeader';
 import { Navigation } from './Navigation';
 import { Divider } from '../shared/Divider';
 import { Beneficiary } from './CreationFormProvider';
-import { PrimaryBlueDark } from '../../colors';
+import { PrimaryBlue } from '../../colors';
+import { Input } from '../shared/Input';
+import { DatePicker } from './DatePicker';
 
 const StepHeader = styled(SharedStepHeader)`
   margin-bottom: ${rem(16)};
@@ -51,13 +53,11 @@ export const SecondStage = () => {
       <StepNumber>{'Step 02'}</StepNumber>
       <StepHeader>{'Add details & funds.'}</StepHeader>
       <StyledSubHeader>{`Locked until`}</StyledSubHeader>
-      <Input
-        value={'Today'}
-        variant="outlined"
-        placeholder={'Address or ENS'}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          e.preventDefault();
-        }}
+      <DatePicker
+        selectedDate={formData.lockedUntilDate}
+        setSelectedDate={(date: DateTime | null) =>
+          updateState((state) => ({ ...state, lockedUntilDate: date }))
+        }
       />
 
       <StyledSubHeader>{`Beneficary`}</StyledSubHeader>

@@ -6,6 +6,7 @@ import React, {
   Dispatch,
   SetStateAction,
 } from 'react';
+import { DateTime } from 'luxon';
 
 type Props = {
   children: React.ReactNode;
@@ -26,6 +27,7 @@ export type State = {
     [key: string]: InputData;
   };
   beneficiary: Beneficiary;
+  lockedUntilDate: DateTime | null;
 };
 
 export enum Stages {
@@ -46,6 +48,7 @@ export const createInitialState = (): State => ({
     '2': { value: '' },
   },
   beneficiary: Beneficiary.Myself,
+  lockedUntilDate: DateTime.now(),
 });
 
 export const CreationFormDispatch = createContext<Dispatcher>({} as Dispatcher);
