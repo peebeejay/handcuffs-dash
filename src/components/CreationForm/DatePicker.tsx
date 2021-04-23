@@ -67,6 +67,10 @@ const MUDatePickerStyled = styled(MUDatePicker)`
     height: ${rem(15)};
     font-family: 'Poppins', sans-serif;
   }
+
+  .MuiOutlinedInput-notchedOutline {
+    border-radius: ${rem(12)};
+  }
 `;
 
 export const DatePicker = (props: Props) => {
