@@ -25,22 +25,13 @@ const StyledSubHeader = styled(SubHeader)`
   margin-bottom: ${rem(5)};
 `;
 
-const Input = styled(MUTextField)`
-  width: 100%;
-
-  input {
-    height: ${rem(15)};
-    font-family: 'Poppins', sans-serif;
-  }
-`;
-
 const StyledDivider = styled(Divider)`
   margin-top: ${rem(35)};
 `;
 
 const RadioButton = styled(FormControlLabel)`
   & .MuiRadio-colorSecondary.Mui-checked {
-    color: ${PrimaryBlueDark};
+    color: ${PrimaryBlue};
   }
 `;
 

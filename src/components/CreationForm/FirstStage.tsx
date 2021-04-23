@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { rem } from 'polished';
-import MUTextField from '@material-ui/core/TextField';
 import { InputBadge } from '../InputBadge';
 import { variantsList } from '../InputBadge';
 import { Divider } from '../shared/Divider';
@@ -10,6 +9,7 @@ import { SubHeader } from '../typography/SubHeader';
 import { StepHeader as SharedStepHeader } from '../typography/StepHeader';
 import { CreationFormState, CreationFormDispatch, Stages } from './CreationFormProvider';
 import { Navigation } from './Navigation';
+import { Input as SharedInput } from '../shared/Input';
 
 const StepHeader = styled(SharedStepHeader)`
   margin-bottom: ${rem(16)};
@@ -28,15 +28,8 @@ const InputWrapper = styled.div`
 
 const Inputs = styled.div``;
 
-const Input = styled(MUTextField)`
-  width: 300px;
-  && {
-    margin-left: ${rem(12)};
-    input {
-      height: ${rem(15)};
-      font-family: 'Poppins', sans-serif;
-    }
-  }
+const Input = styled(SharedInput)`
+  margin-left: ${rem(12)};
 `;
 
 export const FirstStage = () => {
