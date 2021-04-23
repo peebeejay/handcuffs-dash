@@ -14,6 +14,11 @@ export const Input = styled((props) => (
 
   &.root {
     outline: none;
+
+    .MuiOutlinedInput-notchedOutline {
+      border-radius: ${rem(12)};
+    }
+
     .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
       border-color: ${PrimaryBlue};
     }
@@ -23,5 +28,11 @@ export const Input = styled((props) => (
         border-color: ${PrimaryBlue};
       }
     }
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
   }
 `;
