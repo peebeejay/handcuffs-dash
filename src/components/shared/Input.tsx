@@ -4,7 +4,7 @@ import MUTextField from '@material-ui/core/TextField';
 import { PrimaryBlue } from '../../colors';
 
 export const Input = styled((props) => (
-  <MUTextField classes={{ root: 'root', label: 'label' }} {...props} />
+  <MUTextField classes={{ root: 'root' }} {...props} />
 ))`
   width: 100%;
   input {

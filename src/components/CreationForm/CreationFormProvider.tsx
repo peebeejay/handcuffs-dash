@@ -28,6 +28,7 @@ export type State = {
   };
   beneficiary: Beneficiary;
   lockedUntilDate: DateTime | null;
+  protectedAmount: string | null;
 };
 
 export enum Stages {
@@ -49,6 +50,7 @@ export const createInitialState = (): State => ({
   },
   beneficiary: Beneficiary.Myself,
   lockedUntilDate: DateTime.now(),
+  protectedAmount: null,
 });
 
 export const CreationFormDispatch = createContext<Dispatcher>({} as Dispatcher);
@@ -63,6 +65,7 @@ const DashboardProvider: FC<Props> = (props) => {
     };
   }, []);
 
+  console.log('look here', state);
   return (
     <CreationFormDispatch.Provider value={dispatcher}>
       <CreationFormState.Provider value={state}>

@@ -15,6 +15,8 @@ import { Beneficiary } from './CreationFormProvider';
 import { PrimaryBlue } from '../../colors';
 import { Input } from '../shared/Input';
 import { DatePicker } from './DatePicker';
+import MUInputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
 
 const StepHeader = styled(SharedStepHeader)`
   margin-bottom: ${rem(16)};
@@ -32,6 +34,13 @@ const StyledDivider = styled(Divider)`
 const RadioButton = styled(FormControlLabel)`
   & .MuiRadio-colorSecondary.Mui-checked {
     color: ${PrimaryBlue};
+  }
+`;
+
+const InputAdornment = styled(MUInputAdornment)`
+  > p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
   }
 `;
 
@@ -63,19 +72,34 @@ export const SecondStage = () => {
           }));
         }}
       >
-        {Object.values(Beneficiary).map((beneficiary) => (
-          <RadioButton value={beneficiary} control={<Radio />} label={beneficiary} />
+        {Object.values(Beneficiary).map((beneficiary, i) => (
+          <RadioButton
+            key={`beneficiary-option-${i}`}
+            value={beneficiary}
+            control={<Radio />}
+            label={beneficiary}
+          />
         ))}
       </RadioGroup>
       <StyledSubHeader>{`Protected Amount`}</StyledSubHeader>
-      <Input
-        value={'Today'}
-        variant="outlined"
-        placeholder={'Enter ETH Amount'}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          e.preventDefault();
-        }}
-      />
+      <FormControl fullWidth>
+        <Input
+          value={formData.protectedAmount ?? ''}
+          variant="outlined"
+          placeholder={'Enter ETH Amount'}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            updateState((state) => ({
+              ...state,
+              protectedAmount: e.target.value,
+            }));
+            e.preventDefault();
+          }}
+          type="number"
+          InputProps={{
+            endAdornment: <InputAdornment position="end">{'ETH'}</InputAdornment>,
+          }}
+        />
+      </FormControl>
       <StyledDivider />
       <Navigation
         onClickBack={() => updateState({ ...formData, stage: Stages.First })}
