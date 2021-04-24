@@ -5,12 +5,28 @@ https://www.figma.com/file/FZX4Lg2lk9LRjFFQEY7jIR/Handcuffs?node-id=40%3A2
 
 #### todo:
 
+- add mechanism to pass infura keys if needed ~ may be able to get away with just metamask for now
+- framework for interacting with ethereum itself.
+  -- class that is instantiated on mount or via a hook? (what does usage look like?)
+  -- integrate form submit --> will be a function where we interact w a contract to create
+  -- integrate loading state while waiting for contract promise response to resolve.
+  -- integrate get command to retrieve data for a specified contract
+
+- continue to add theme support
+- add routing so that the form page persists via back + front
+
 - fix rough styling on form
 - make it possible to move between the form with forward/back buttons
+- create vault table
+- begin work on vault detail page
+  -- back button
+  -- header
+  -- balance and beneficiary cards
+  -- guardian cards
+  -- unlock date component
+  -- deposit / withdraw funds form
 
 #### lower priority:
-
-- add theme support
 
 #### done:
 
@@ -38,6 +54,16 @@ https://www.figma.com/file/FZX4Lg2lk9LRjFFQEY7jIR/Handcuffs?node-id=40%3A2
 - make it so that stage 1 navigation button (back) is disabled
 - fix beneficiary radio buttons
 - fix styling on the form navigation buttons
+- fix styling for form inputs (especially the focus / active state)
+- add calendar component for 'Locked until'
+- Fix protected amount input & integrate into state
+- begin adding theme support
+
+- framework for interacting with ethereum itself:
+  -- design it (take 10-15 minutes to do so)
+  -- need folder for ABIs
+  -- maybe write a small typescript client ~ handcuffs-client
+  -- look at other clients ~ notional, reflexer (geb), ren, compound, set protocol
 
 - create connected wallet mechanism
   - create Web3ReactProvider instantiation -> pass in a ethers.js provider
